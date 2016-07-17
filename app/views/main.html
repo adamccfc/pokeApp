@@ -1,0 +1,54 @@
+<div class="row" ng-controller="MainCtrl">
+  
+  <div class="col-xs-12">
+    <div class="form-group">
+      <label for="search" class="">Search Pokemon</label>
+      <input type="text" name="search" ng-model="search" ng-model-options="{ debounce: 800 }" onclick="select()" class="form-control" placeholder="Enter pokemon name..." autofocus />
+    </div>
+  </div>
+    
+
+  <div ng-if="!pokemon">
+    <div class="col-xs-12">
+      <p class="bg-info">Loading Results...</p>
+    </div>
+  </div>
+
+  <div ng-if="pokemon">
+    
+    <div class="col-sm-2">
+      <img src="{{ pokemon.sprites.front_default }}" />
+    </div>
+    <div class="col-sm-10">
+      <h1>{{ pokemon.name }}</h1>
+      <p>Weight: {{ pokemon.weight }}kg</p>
+    </div>
+
+
+    <div class="col-xs-12">
+      
+      <h3>Types</h3>
+      <ul>
+        <li ng-repeat="pokemonTypes in pokemon.types">{{ pokemonTypes.type.name }}</li>
+      </ul>
+
+      <h3>Stats</h3>
+      <ul>
+        <li ng-repeat="pokemonStats in pokemon.stats">{{ pokemonStats.stat.name }} | {{ pokemonStats.base_stat }}</li>
+      </ul>
+
+      <h3>Abilities</h3>
+      <ul>
+        <li ng-repeat="abilityName in pokemon.abilities">{{ abilityName.ability.name }}</li>
+      </ul>
+
+      <!-- <h3>Moves</h3>
+      <ul>
+        <li ng-repeat="moveName in pokemon.moves">{{ moveName.move.name }}</li>
+      </ul> -->
+    
+    </div>
+
+  </div>
+
+</div>
